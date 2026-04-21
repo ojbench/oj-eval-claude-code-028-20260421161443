@@ -41,10 +41,10 @@ int main() {
 
     while (cin >> cmd) {
         if (cmd == "ADD") {
-            string name, gender;
+            string name, gender_in;
             int className;
             int scores[9];
-            cin >> name >> gender >> className;
+            cin >> name >> gender_in >> className;
             for (int i = 0; i < 9; ++i) cin >> scores[i];
 
             if (started) {
@@ -56,6 +56,7 @@ int main() {
                 continue;
             }
 
+            string gender = (gender_in == "M" ? "male" : "female");
             Student* s = new Student{name, gender, className};
             for (int i = 0; i < 9; ++i) s->scores[i] = scores[i];
             s->updateAvg();
@@ -99,7 +100,7 @@ int main() {
                 cout << "[Error]Query failed.\n";
                 continue;
             }
-            cout << "STUDENT " << name << " NOW AT RANKING " << nameToStudent[name]->rank << ".\n";
+            cout << "STUDENT " << name << " NOW AT RANKING " << nameToStudent[name]->rank << "\n";
 
         } else if (cmd == "END") {
             break;
